@@ -1,0 +1,2 @@
+class RetryJobError < RuntimeError
+end
