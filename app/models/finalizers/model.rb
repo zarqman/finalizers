@@ -76,6 +76,11 @@ module Finalizers::Model
 
   module ClassMethods
 
+    # if child models don't include Finalizers::Model, but are self-deleting (perhaps they
+    # represent an in-progress work task and are deleted when finished), then use
+    # wait_for_no_dependents to defer destroying the current model until the children are gone.
+    # if they are not self-deleting, use standard options like dependent: :destroy or :delete_all.
+    # finally, if children do include Finalizers::Model, use erase_dependents instead.
     def wait_for_no_dependents(*assoc_list, erase_if_found: false)
       add_finalizer prepend: true do
         assoc_list.each do |assoc|
@@ -98,6 +103,8 @@ module Finalizers::Model
       end
     end
 
+    # if child models include Finalizers::Model, then use erase_dependents to perform a cascading
+    # erase. use this instead of has_many or has_one's depdendent: :destroy (etc).
     def erase_dependents(*assoc_list)
       wait_for_no_dependents(*assoc_list, erase_if_found: true)
       before_update do
