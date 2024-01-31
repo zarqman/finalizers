@@ -152,7 +152,7 @@ Be sure to keep the existing signature for `perform`:
 
 Like overriding, create your own version of the job and require the original job before reopening it:
 ```ruby
-require "#{Finalizers::Engine.root}/app/jobs/eraser_job"
+load "#{Finalizers::Engine.root}/app/jobs/eraser_job.rb"
 class EraserJob
   # add extensions here
 end
