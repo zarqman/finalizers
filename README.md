@@ -164,7 +164,7 @@ end
 
 Extracted from production code.
 
-Tested w/Rails 7.x and GoodJob 3.x.
+Tested w/Rails 7.x, 8.x; GoodJob 3.x; and SolidQueue 1.x.
 
 
 

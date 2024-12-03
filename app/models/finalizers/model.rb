@@ -130,7 +130,7 @@ module Finalizers::Model
     destroy(force: true) || _raise_record_not_destroyed
   end
 
-  # should run callbacks, but not validations
+  # runs save callbacks, but not validations or validation callbacks
   # intent is to parallel destroy()'s behavior
   def erase
     self.state     = 'deleted'
