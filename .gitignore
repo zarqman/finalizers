@@ -1,4 +1,5 @@
 /.bundle/
+/.ruby-*
 /doc/
 /log/*.log
 /pkg/
